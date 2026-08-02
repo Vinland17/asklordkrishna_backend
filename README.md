@@ -1,3 +1,9 @@
+<img width="950" height="914" alt="Screenshot 2025-08-06 201238" src="https://github.com/user-attachments/assets/8e0b0fdd-a7e5-4371-b4bd-ab911eac8c12" />
+<img width="949" height="913" alt="Screenshot 2025-08-06 201058" src="https://github.com/user-attachments/assets/bfed571a-4dc5-4514-a785-433dd5966c51" />
+<img width="933" height="910" alt="Screenshot 2025-08-06 201037" src="https://github.com/user-attachments/assets/f429e930-7ec2-4044-92e2-d1d918b2d423" />
+<img width="682" height="667" alt="Screenshot 2025-08-06 201018" src="https://github.com/user-attachments/assets/8279cb92-32fb-467e-b3f9-59a7f6a22997" />
+<img width="925" height="914" alt="Screenshot 2025-08-06 200955" src="https://github.com/user-attachments/assets/9c541829-c5c3-4ecd-b78f-601030165464" />
+<img width="946" height="911" alt="Screenshot 2025-08-06 200716" src="https://github.com/user-attachments/assets/a8043cc2-17f2-499f-bd82-0608e0cd6332" />
 # 🪔 Ask_Lord_Krishna.ai
 
 > **An AI-powered spiritual guide delivering personalized, Bhagavad Gita-inspired wisdom through advanced LLM orchestrations.**
