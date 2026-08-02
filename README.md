@@ -28,15 +28,6 @@ In today's fast-paced digital era, individuals frequently face personal, ethical
 
 ---
 
-## 📸 Demo & Interface
-
-*(Drag and drop your app screenshot or GIF right below this line inside the GitHub editor!)*
-
-
-<!-- PLACE YOUR DRAGGED IMAGE LINK HERE -->
-
----
-
 ## 🏗 System Architecture
 
 The application adopts a decoupled, multi-tier architecture ensuring scalability, separation of concerns, and clean API integration:
