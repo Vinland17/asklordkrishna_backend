@@ -1,0 +1,9 @@
+.git
+.gitignore
+.env
+.idea/
+target/
+frontend/
+*.log
+README.md
+HELP.md

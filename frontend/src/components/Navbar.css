@@ -1,0 +1,145 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ff6600;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.nav-brand:hover {
+  opacity: 0.85;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.hamburger-menu:hover {
+  background: #f0f0f0;
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 150px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-menu li:last-child a {
+  border-bottom: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f8f8f8;
+  color: #ff6600;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.auth-btn {
+  padding: 8px 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.auth-btn:first-child {
+  color: #ff6600;
+  border-color: #ff6600;
+}
+
+.auth-btn:first-child:hover,
+.auth-btn:first-child.active {
+  background: #ff6600;
+  color: white;
+}
+
+.auth-btn:last-child {
+  background: #ff6600;
+  color: white;
+}
+
+.auth-btn:last-child:hover,
+.auth-btn:last-child.active {
+  background: #e55a00;
+  transform: translateY(-1px);
+}
+
+.auth-btn.logout-btn {
+  background: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.auth-btn.logout-btn:hover {
+  background: #dc3545;
+  color: white;
+}
+

@@ -30,11 +30,17 @@ public class GeminiService {
                     "If the question is inappropriate, gently redirect with compassion.";
 
     public String getKrishnaResponse(String userQuestion) {
+        if (geminiApiKey == null || geminiApiKey.trim().isEmpty()) {
+            logger.error("Gemini API key is not configured. Please set GEMINI_API_KEY.");
+            return "Divine communication is temporarily unavailable: GEMINI_API_KEY is not configured.";
+        }
+
         try {
             logger.info("=== GEMINI API DEBUG START ===");
             logger.info("Processing question: {}", userQuestion);
             logger.info("API Key (first 10 chars): {}...", geminiApiKey.substring(0, Math.min(10, geminiApiKey.length())));
             logger.info("API URL: {}", geminiApiUrl);
+
 
             String prompt = SYSTEM_PROMPT + "\n\nUser's question: " + userQuestion;
             ObjectMapper mapper = new ObjectMapper();
@@ -59,14 +65,32 @@ public class GeminiService {
 
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 
-            logger.info("Making request to Gemini API...");
+            ResponseEntity<String> response = null;
+            int maxAttempts = 2;
+            for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+                try {
+                    logger.info("Making request to Gemini API (attempt {}/{})...", attempt, maxAttempts);
+                    response = restTemplate.exchange(
+                            geminiApiUrl,
+                            HttpMethod.POST,
+                            requestEntity,
+                            String.class
+                    );
+                    break;
+                } catch (org.springframework.web.client.HttpStatusCodeException e) {
+                    if ((e.getStatusCode().value() == 503 || e.getStatusCode().value() == 429) && attempt < maxAttempts) {
+                        logger.warn("Received {} from Gemini, retrying in 1.5s...", e.getStatusCode());
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                        }
+                        continue;
+                    }
+                    throw e;
+                }
+            }
 
-            ResponseEntity<String> response = restTemplate.exchange(
-                    geminiApiUrl,
-                    HttpMethod.POST,
-                    requestEntity,
-                    String.class
-            );
 
             logger.info("Response status: {}", response.getStatusCode());
             logger.info("Response body: {}", response.getBody());
@@ -89,6 +113,12 @@ public class GeminiService {
                 return "I am experiencing difficulties connecting to divine wisdom. Please try again.";
             }
 
+        } catch (org.springframework.web.client.HttpStatusCodeException e) {
+            logger.error("=== GEMINI API HTTP ERROR ===");
+            logger.error("Status code: {}", e.getStatusCode());
+            logger.error("Response body: {}", e.getResponseBodyAsString());
+            logger.error("=== GEMINI API ERROR END ===");
+            return "Unable to reach the divine channel at this moment. Please check your Gemini configuration or try again shortly.";
         } catch (Exception e) {
             logger.error("=== GEMINI API ERROR ===");
             logger.error("Exception type: {}", e.getClass().getSimpleName());
@@ -99,3 +129,4 @@ public class GeminiService {
         }
     }
 }
+

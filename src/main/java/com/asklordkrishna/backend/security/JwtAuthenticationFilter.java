@@ -96,9 +96,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
 
-        // Skip JWT validation for public endpoints
-        return path.equals("/api/auth/login") ||
-                path.equals("/api/auth/register") ||
-                path.equals("/api/auth/health");
+        // Skip JWT validation for public auth endpoints and health checks
+        return path.startsWith("/api/auth/") ||
+                path.equals("/api/health");
     }
 }
